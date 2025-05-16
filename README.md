@@ -7,25 +7,49 @@ This application consists of a FastAPI backend that manages movie and actor data
 ```
 .
 ├── backend/
-│   ├── database.py        # PostgreSQL connection setup
-│   ├── main_fastapi.py    # FastAPI application with endpoints
-│   ├── models.py          # SQLAlchemy models and Pydantic schemas
-│   ├── requirements.txt   # Backend dependencies
-│   └── .env               # Backend environment variables
-└── frontend/
-  ├── main_streamlit.py  # Streamlit UI application
-  ├── requirements.txt   # Frontend dependencies
-  └── .env               # Frontend environment variables
+│   ├── database.py          # PostgreSQL connection setup
+│   ├── docker-entrypoint.sh # Docker entrypoint script
+│   ├── Dockerfile           # Backend Docker configuration
+│   ├── main_fastapi.py      # FastAPI application with endpoints
+│   ├── models.py            # SQLAlchemy models and Pydantic schemas
+│   ├── requirements.txt     # Backend dependencies
+│   └── .env                 # Backend environment variables
+├── frontend/
+│   ├── Dockerfile           # Frontend Docker configuration
+│   ├── main_streamlit.py    # Streamlit UI application
+│   ├── requirements.txt     # Frontend dependencies
+│   └── .env                 # Frontend environment variables
+└── docker-compose.yml       # Docker Compose configuration
 ```
 
 ## Setup Instructions
 
-### Prerequisites
+### Option 1: Using Docker Compose (Recommended)
 
-- PostgreSQL installed and running
-- Python 3.x installed
+The easiest way to run the application is using Docker Compose:
 
-### Backend Setup
+1. Make sure you have Docker and Docker Compose installed on your system.
+
+2. Set your Groq API key as an environment variable:
+   ```
+   export GROQ_API_KEY=your_groq_api_key_here
+   ```
+
+3. Run the application using Docker Compose:
+   ```
+   docker compose up -d
+   ```
+
+4. Access the applications:
+   - Frontend Streamlit UI: http://localhost:8501
+   - Backend API documentation: http://localhost:8000/docs
+
+5. To stop the application:
+   ```
+   docker compose down
+   ```
+
+### Option 2: Manual Setup
 
 1. Navigate to the backend directory:
    ```
@@ -56,30 +80,28 @@ This application consists of a FastAPI backend that manages movie and actor data
 
 6. Access the API documentation at http://localhost:8000/docs
 
-### Frontend Setup
-
-1. Open a new terminal and navigate to the frontend directory:
+7. Open a new terminal and navigate to the frontend directory:
    ```
    cd frontend
    ```
 
-2. Create and activate a virtual environment:
+8. Create and activate a virtual environment:
    ```
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. Install dependencies:
+9. Install dependencies:
    ```
    pip install -r requirements.txt
    ```
 
-4. Start the Streamlit app:
-   ```
-   streamlit run main_streamlit.py
-   ```
+10. Start the Streamlit app:
+    ```
+    streamlit run main_streamlit.py
+    ```
 
-5. Access the Streamlit app at http://localhost:8501
+11. Access the Streamlit app at http://localhost:8501
 
 ## Backend API Endpoints
 

@@ -3,6 +3,7 @@
 from sqlalchemy.orm import Session
 import os
 import sys
+import argparse
 from dotenv import load_dotenv
 
 # Add the current directory to the path so we can import our modules
@@ -77,7 +78,7 @@ sample_movies = [
     }
 ]
 
-def add_movies():
+def add_movies(auto_accept=False):
     """Add sample movies to the database"""
     # Create a new session
     db = SessionLocal()
@@ -86,11 +87,14 @@ def add_movies():
         # Check if movies already exist
         existing_count = db.query(Movies).count()
         if existing_count > 0:
-            print(f"Database already contains {existing_count} movies. Do you want to add more? (y/n)")
-            response = input().lower()
-            if response != 'y':
-                print("Operation cancelled.")
-                return
+            if not auto_accept:
+                print(f"Database already contains {existing_count} movies. Do you want to add more? (y/n)")
+                response = input().lower()
+                if response != 'y':
+                    print("Operation cancelled.")
+                    return
+            else:
+                print(f"Database already contains {existing_count} movies. Auto-accepting to add more.")
         
         # Add each movie and its actors
         for movie_data in sample_movies:
@@ -132,6 +136,10 @@ def add_movies():
         db.close()
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Add sample movies to the database')
+    parser.add_argument('--auto-accept', action='store_true', help='Automatically accept adding movies without prompting')
+    args = parser.parse_args()
+
     print("Adding sample movies to database...")
-    add_movies()
+    add_movies(auto_accept=args.auto_accept)
     print("Done!")

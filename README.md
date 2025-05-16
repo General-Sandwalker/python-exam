@@ -13,9 +13,9 @@ This application consists of a FastAPI backend that manages movie and actor data
 │   ├── requirements.txt   # Backend dependencies
 │   └── .env               # Backend environment variables
 └── frontend/
-    ├── main_streamlit.py  # Streamlit UI application
-    ├── requirements.txt   # Frontend dependencies
-    └── .env               # Frontend environment variables
+  ├── main_streamlit.py  # Streamlit UI application
+  ├── requirements.txt   # Frontend dependencies
+  └── .env               # Frontend environment variables
 ```
 
 ## Setup Instructions
@@ -46,7 +46,7 @@ This application consists of a FastAPI backend that manages movie and actor data
 4. Configure the `.env` file with your PostgreSQL connection details:
    ```
    DATABASE_URL=postgresql://username:password@localhost:5432/moviedb
-   XAI_API_KEY=your_xai_api_key_here
+   GROQ_API_KEY=your_groq_api_key_here
    ```
 
 5. Start the FastAPI server:
@@ -81,15 +81,15 @@ This application consists of a FastAPI backend that manages movie and actor data
 
 5. Access the Streamlit app at http://localhost:8501
 
-## Important Note
+## Backend API Endpoints
 
-**You must add movie data via the backend API before using the frontend.** Use the `/movies/` POST endpoint in the FastAPI Swagger UI at http://localhost:8000/docs to add some sample movies.
+### Create Movie
+```
+POST /movies/
+```
+Creates a new movie with associated actors.
 
-## Sample Movie Data
-
-Here are three sample movies you can add via the API:
-
-1. **Inception**
+**Request Body Example (for "Inception"):**
 ```json
 {
   "title": "Inception",
@@ -112,49 +112,22 @@ Here are three sample movies you can add via the API:
 }
 ```
 
-2. **Pulp Fiction**
-```json
-{
-  "title": "Pulp Fiction",
-  "year": 1994,
-  "director": "Quentin Tarantino",
-  "actors": [
-    {
-      "actor_name": "John Travolta"
-    },
-    {
-      "actor_name": "Samuel L. Jackson"
-    },
-    {
-      "actor_name": "Uma Thurman"
-    },
-    {
-      "actor_name": "Bruce Willis"
-    }
-  ]
-}
+### Get Random Movie
 ```
+GET /movies/random/
+```
+Retrieves a random movie with its associated actors.
 
-3. **Al-Risalah (The Message)**
+### Generate Movie Summary
+```
+POST /generate_summary/
+```
+Generates a summary for a movie using the Groq API.
+
+**Request Body Example:**
 ```json
 {
-  "title": "Al-Risalah (The Message)",
-  "year": 1976,
-  "director": "Moustapha Akkad",
-  "actors": [
-    {
-      "actor_name": "Abdullah Gaith (عبد الله غيث)"
-    },
-    {
-      "actor_name": "Muna Wassef (منى واصف)"
-    },
-    {
-      "actor_name": "Hamdi Ghaith (حمدي غيث)"
-    },
-    {
-      "actor_name": "Ahmad Marey (أحمد مرعي)"
-    }
-  ]
+  "movie_id": 1
 }
 ```
 

@@ -74,61 +74,6 @@ sample_movies = [
             "James Caan",
             "Richard S. Castellano"
         ]
-    },
-    {
-        "title": "Parasite",
-        "year": 2019,
-        "director": "Bong Joon-ho",
-        "actors": [
-            "Song Kang-ho",
-            "Lee Sun-kyun",
-            "Cho Yeo-jeong",
-            "Choi Woo-shik"
-        ]
-    },
-    {
-        "title": "The Matrix",
-        "year": 1999,
-        "director": "Lana Wachowski, Lilly Wachowski",
-        "actors": [
-            "Keanu Reeves",
-            "Laurence Fishburne",
-            "Carrie-Anne Moss",
-            "Hugo Weaving"
-        ]
-    },
-    {
-        "title": "Back to the Future",
-        "year": 1985,
-        "director": "Robert Zemeckis",
-        "actors": [
-            "Michael J. Fox",
-            "Christopher Lloyd",
-            "Lea Thompson",
-            "Crispin Glover"
-        ]
-    },
-    {
-        "title": "Spider-Man: Into the Spider-Verse",
-        "year": 2018,
-        "director": "Bob Persichetti, Peter Ramsey, Rodney Rothman",
-        "actors": [
-            "Shameik Moore",
-            "Jake Johnson",
-            "Hailee Steinfeld",
-            "Mahershala Ali"
-        ]
-    },
-    {
-        "title": "Spirited Away",
-        "year": 2001,
-        "director": "Hayao Miyazaki",
-        "actors": [
-            "Rumi Hiiragi",
-            "Miyu Irino",
-            "Mari Natsuki",
-            "Takashi Naitô"
-        ]
     }
 ]
 
